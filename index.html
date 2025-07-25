@@ -13,6 +13,8 @@
       --blu-bologna: #001f5b;
       --rosso-bologna: #9e1b32;
       --bianco: #ffffff;
+      --grigio-scuro: #333;
+      --grigio-chiaro: #ddd;
     }
 
     * {
@@ -29,23 +31,38 @@
       align-items: center;
       min-height: 100vh;
       padding: 40px 20px;
+      scroll-behavior: smooth;
+    }
+
+    /* Scroll progress bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 5px;
+      background: var(--bianco);
+      width: 0%;
+      z-index: 9999;
+      transition: width 0.2s ease-out;
     }
 
     /* ---------- Titolo e descrizione ---------- */
     h1 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin: 0 0 10px;
       text-align: center;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
 
     p.description {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       line-height: 1.6;
       text-align: center;
       max-width: 800px;
       margin: 0 0 40px;
       opacity: .95;
+      text-shadow: 0 0 3px rgba(0,0,0,0.15);
     }
 
     /* ---------- Card centrale ---------- */
@@ -57,18 +74,42 @@
       border-radius: 16px;
       padding: 30px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+      transition: box-shadow 0.3s ease;
+    }
+    .container:hover {
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .35);
+    }
+
+    /* ---------- Sezioni con icona ---------- */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: var(--rosso-bologna);
+      user-select: none;
+    }
+    .section-label svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--rosso-bologna);
+      flex-shrink: 0;
     }
 
     /* ---------- Video ---------- */
     .video-wrapper {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%;         /* 16:9 */
+      padding-bottom: 56.25%; /* 16:9 */
       margin-bottom: 40px;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
       background: #000;
+      transition: box-shadow 0.3s ease;
     }
     .video-wrapper iframe {
       position: absolute;
@@ -76,21 +117,47 @@
       width: 100%;
       height: 100%;
       border: none;
+      border-radius: 12px;
+    }
+    .video-wrapper:hover {
+      box-shadow: 0 6px 26px rgba(0, 0, 0, .35);
     }
 
     /* ---------- Form ---------- */
     .form-wrapper iframe {
       width: 100%;
-      height: 600px;
+      height: 700px;
       border: none;
       border-radius: 12px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
-      transition: height 0.3s ease;
+      transition: box-shadow 0.3s ease;
+    }
+    .form-wrapper iframe:hover {
+      box-shadow: 0 6px 26px rgba(0, 0, 0, .25);
     }
 
-    /* ---------- Form più grande su mobile ---------- */
-    body.mobile .form-wrapper iframe {
-      height: 1100px; /* altezza aumentata per migliore leggibilità */
+    /* ---------- Pulsante Torna su ---------- */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--rosso-bologna);
+      color: var(--bianco);
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+      z-index: 9999;
+    }
+    #scrollTopBtn:hover {
+      background: var(--blu-bologna);
     }
 
     /* ---------- Footer ---------- */
@@ -99,17 +166,21 @@
       font-size: .9rem;
       text-align: center;
       opacity: .8;
+      user-select: none;
+      text-shadow: 0 0 3px rgba(0,0,0,0.15);
     }
 
     /* ---------- Responsivo ---------- */
     @media (max-width: 600px) {
-      h1          { font-size: 1.8rem; }
-      p.description { font-size: 1rem; }
-      /* altezza iframe già gestita dalla classe mobile */
+      h1          { font-size: 2rem; }
+      p.description { font-size: 1.1rem; }
+      .form-wrapper iframe { height: 600px !important; }
     }
   </style>
 </head>
 <body>
+
+  <div id="progress-bar"></div>
 
   <h1>Match Insights & Performance Dashboard</h1>
 
@@ -122,7 +193,10 @@
 
   <div class="container">
 
-    <!-- Video (Google Drive) -->
+    <div class="section-label">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 16.5l6-4.5-6-4.5v9z"/></svg>
+      Video dimostrativo
+    </div>
     <div class="video-wrapper">
       <iframe
         src="https://drive.google.com/file/d/1l1ixz-P-jSLq_eSSpljVBELA4tHQ2vJG/preview"
@@ -131,7 +205,10 @@
         title="Video dimostrativo"></iframe>
     </div>
 
-    <!-- Microsoft Forms -->
+    <div class="section-label">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 1 1-7 7 7 7 0 0 1 7-7zm0 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 4c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+      Questionario di validazione
+    </div>
     <div class="form-wrapper">
       <iframe
         src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=3EeW6QgbSkW_jGmRgbOJqz9p_xyFkq1Cq0zfzTtzQLFURUxNUlc0RTVVTThTUVRZRk0wUUhUSDRIRi4u&embed=true"
@@ -146,10 +223,31 @@
     Anno Accademico 2024/2025
   </footer>
 
+  <button id="scrollTopBtn" title="Torna su">↑</button>
+
   <script>
-    if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      document.body.classList.add('mobile');
-    }
+    // Mostra/Nascondi bottone "Torna su"
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.style.display = 'flex';
+      } else {
+        scrollTopBtn.style.display = 'none';
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // Barra di progresso scroll
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBar.style.width = scrollPercent + '%';
+    });
   </script>
 
 </body>
