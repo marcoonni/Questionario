@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
 
   <style>
-    /* ---------- Variabili colore ---------- */
+    /* ---------- Base ---------- */
     :root {
       --blu-bologna: #001f5b;
       --rosso-bologna: #9e1b32;
@@ -19,7 +19,6 @@
       box-sizing: border-box;
     }
 
-    /* ---------- Base ---------- */
     body {
       margin: 0;
       font-family: 'Open Sans', sans-serif;
@@ -30,7 +29,7 @@
       align-items: center;
       min-height: 100vh;
       padding: 40px 20px;
-      transition: all 0.3s ease;
+      transition: padding 0.3s ease;
     }
 
     /* ---------- Titolo e descrizione ---------- */
@@ -39,7 +38,6 @@
       font-size: 2.5rem;
       margin: 0 0 10px;
       text-align: center;
-      transition: font-size 0.3s ease;
     }
 
     p.description {
@@ -48,7 +46,7 @@
       text-align: center;
       max-width: 800px;
       margin: 0 0 40px;
-      opacity: 0.95;
+      opacity: .95;
     }
 
     /* ---------- Card centrale ---------- */
@@ -59,8 +57,8 @@
       color: var(--blu-bologna);
       border-radius: 16px;
       padding: 30px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-      transition: padding 0.3s ease, max-width 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+      transition: padding 0.3s ease;
     }
 
     /* ---------- Video ---------- */
@@ -71,7 +69,7 @@
       margin-bottom: 40px;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
       background: #000;
     }
     .video-wrapper iframe {
@@ -80,7 +78,6 @@
       width: 100%;
       height: 100%;
       border: none;
-      border-radius: 12px;
     }
 
     /* ---------- Form ---------- */
@@ -89,16 +86,16 @@
       height: 600px;
       border: none;
       border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
       transition: height 0.3s ease;
     }
 
     /* ---------- Footer ---------- */
     footer {
       margin-top: 60px;
-      font-size: 0.9rem;
+      font-size: .9rem;
       text-align: center;
-      opacity: 0.8;
+      opacity: .8;
     }
 
     /* ---------- STILI PER DISPOSITIVO MOBILE ---------- */
@@ -112,34 +109,23 @@
 
     body.mobile .container {
       max-width: 100%;
-      padding: 15px;
+      padding: 25px;
     }
 
     body.mobile .form-wrapper iframe {
-      height: 400px;
+      height: 800px; /* più alto su mobile */
     }
 
-    /* ---------- Stili per desktop, se vuoi ulteriori differenze, aggiungi qui ---------- */
-    body.desktop {
-      /* puoi aggiungere se vuoi */
+    /* ---------- Media Query di fallback ---------- */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .form-wrapper iframe {
+        height: 800px; /* coerente con js/mobile class */
+      }
     }
   </style>
-
-  <script>
-    // Rileva se il dispositivo è mobile o desktop e aggiunge la classe corrispondente al body
-    function isMobile() {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      if (isMobile()) {
-        document.body.classList.add('mobile');
-      } else {
-        document.body.classList.add('desktop');
-      }
-    });
-  </script>
-
 </head>
 <body>
 
@@ -177,6 +163,13 @@
     Corso di Laurea in Scienze e Tecniche dell’Attività Motoria e Sportiva<br>
     Anno Accademico 2024/2025
   </footer>
+
+  <script>
+    // Aggiunge classe "mobile" al body se il device è mobile
+    if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      document.body.classList.add('mobile');
+    }
+  </script>
 
 </body>
 </html>
