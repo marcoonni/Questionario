@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
 
   <style>
-    /* ---------- Base ---------- */
+    /* ---------- Variabili colore ---------- */
     :root {
       --blu-bologna: #001f5b;
       --rosso-bologna: #9e1b32;
@@ -19,6 +19,7 @@
       box-sizing: border-box;
     }
 
+    /* ---------- Base ---------- */
     body {
       margin: 0;
       font-family: 'Open Sans', sans-serif;
@@ -29,29 +30,25 @@
       align-items: center;
       min-height: 100vh;
       padding: 40px 20px;
-      line-height: 1.6;
-      scroll-behavior: smooth;
+      transition: all 0.3s ease;
     }
 
     /* ---------- Titolo e descrizione ---------- */
     h1 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       margin: 0 0 10px;
       text-align: center;
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 8px rgba(255,255,255,0.2);
+      transition: font-size 0.3s ease;
     }
 
     p.description {
-      font-size: 1.15rem;
-      line-height: 1.8;
+      font-size: 1.1rem;
+      line-height: 1.6;
       text-align: center;
       max-width: 800px;
       margin: 0 0 40px;
       opacity: 0.95;
-      color: #e0e6f0;
-      padding: 0 10px;
     }
 
     /* ---------- Card centrale ---------- */
@@ -61,20 +58,9 @@
       background: var(--bianco);
       color: var(--blu-bologna);
       border-radius: 16px;
-      padding: 30px 25px;
-      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
-      border: 3px solid;
-      border-image-slice: 1;
-      border-width: 3px;
-      border-image-source: linear-gradient(to right, var(--rosso-bologna), var(--blu-bologna));
-      opacity: 0;
-      animation: fadeIn 1s forwards ease-in-out;
-      position: relative;
-      box-sizing: border-box;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
+      padding: 30px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      transition: padding 0.3s ease, max-width 0.3s ease;
     }
 
     /* ---------- Video ---------- */
@@ -87,7 +73,6 @@
       overflow: hidden;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
       background: #000;
-      transition: box-shadow 0.3s ease;
     }
     .video-wrapper iframe {
       position: absolute;
@@ -96,67 +81,16 @@
       height: 100%;
       border: none;
       border-radius: 12px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .video-wrapper iframe:hover {
-      box-shadow: 0 0 20px var(--rosso-bologna);
-      transform: scale(1.01);
-    }
-
-    /* Loader sopra video */
-    .loader {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 48px;
-      height: 48px;
-      margin: -24px 0 0 -24px;
-      border: 5px solid #f3f3f3;
-      border-top: 5px solid var(--rosso-bologna);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      z-index: 10;
-      display: block;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg);}
-      100% { transform: rotate(360deg);}
-    }
-    .hidden {
-      display: none !important;
     }
 
     /* ---------- Form ---------- */
-    .form-wrapper {
-      position: relative;
-    }
     .form-wrapper iframe {
       width: 100%;
       height: 600px;
       border: none;
       border-radius: 12px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .form-wrapper iframe:hover {
-      box-shadow: 0 0 20px var(--rosso-bologna);
-      transform: scale(1.01);
-    }
-
-    /* Loader sopra form */
-    .form-loader {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 48px;
-      height: 48px;
-      margin: -24px 0 0 -24px;
-      border: 5px solid #f3f3f3;
-      border-top: 5px solid var(--rosso-bologna);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      z-index: 10;
-      display: block;
+      transition: height 0.3s ease;
     }
 
     /* ---------- Footer ---------- */
@@ -165,112 +99,47 @@
       font-size: 0.9rem;
       text-align: center;
       opacity: 0.8;
-      font-style: italic;
-      padding: 0 10px;
-    }
-    footer a {
-      color: var(--bianco);
-      text-decoration: underline;
-      font-style: normal;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-    footer a:hover {
-      color: var(--rosso-bologna);
     }
 
-    /* ---------- Scroll to top button ---------- */
-    #scrollTopBtn {
-      position: fixed;
-      bottom: 40px;
-      right: 40px;
-      background: var(--rosso-bologna);
-      color: var(--bianco);
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 28px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-      z-index: 100;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      user-select: none;
-    }
-    #scrollTopBtn.show {
-      opacity: 1;
-      visibility: visible;
-    }
-    #scrollTopBtn:hover {
-      background: var(--blu-bologna);
+    /* ---------- STILI PER DISPOSITIVO MOBILE ---------- */
+    body.mobile {
+      padding: 20px 10px;
     }
 
-    /* ---------- Responsivo ---------- */
-    @media (max-width: 900px) {
-      .container {
-        padding: 25px 20px;
-      }
-      p.description {
-        font-size: 1.1rem;
-        max-width: 90vw;
-      }
+    body.mobile h1 {
+      font-size: 1.8rem;
     }
 
-    @media (max-width: 600px) {
-      body {
-        padding: 20px 10px;
-      }
-      h1 {
-        font-size: 1.9rem;
-        padding: 0 10px;
-      }
-      p.description {
-        font-size: 1rem;
-        padding: 0 10px;
-        margin-bottom: 30px;
-      }
-      .container {
-        max-width: 100%;
-        padding: 20px 15px;
-        border-radius: 12px;
-        margin-bottom: 20px;
-      }
-      .video-wrapper {
-        margin-bottom: 30px;
-      }
-      .form-wrapper iframe {
-        height: 450px;
-      }
-      #scrollTopBtn {
-        bottom: 20px;
-        right: 20px;
-        width: 42px;
-        height: 42px;
-        font-size: 24px;
-      }
+    body.mobile .container {
+      max-width: 100%;
+      padding: 15px;
     }
 
-    @media (max-width: 400px) {
-      .form-wrapper iframe {
-        height: 400px;
-      }
-      p.description {
-        font-size: 0.95rem;
-      }
-      #scrollTopBtn {
-        width: 36px;
-        height: 36px;
-        font-size: 20px;
-        bottom: 15px;
-        right: 15px;
-      }
+    body.mobile .form-wrapper iframe {
+      height: 400px;
+    }
+
+    /* ---------- Stili per desktop, se vuoi ulteriori differenze, aggiungi qui ---------- */
+    body.desktop {
+      /* puoi aggiungere se vuoi */
     }
   </style>
+
+  <script>
+    // Rileva se il dispositivo è mobile o desktop e aggiunge la classe corrispondente al body
+    function isMobile() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (isMobile()) {
+        document.body.classList.add('mobile');
+      } else {
+        document.body.classList.add('desktop');
+      }
+    });
+  </script>
+
 </head>
 <body>
 
@@ -286,45 +155,28 @@
   <div class="container">
 
     <!-- Video (Google Drive) -->
-    <div class="video-wrapper" id="videoWrapper">
-      <div class="loader" id="videoLoader"></div>
+    <div class="video-wrapper">
       <iframe
         src="https://drive.google.com/file/d/1l1ixz-P-jSLq_eSSpljVBELA4tHQ2vJG/preview"
         allow="autoplay; encrypted-media"
         allowfullscreen
-        title="Video dimostrativo"
-        onload="document.getElementById('videoLoader').classList.add('hidden')"></iframe>
+        title="Video dimostrativo"></iframe>
     </div>
 
-  <iframe width="640px" height="480px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=3EeW6QgbSkW_jGmRgbOJqz9p_xyFkq1Cq0zfzTtzQLFURUxNUlc0RTVVTThTUVRZRk0wUUhUSDRIRi4u&embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+    <!-- Microsoft Forms -->
+    <div class="form-wrapper">
+      <iframe
+        src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=3EeW6QgbSkW_jGmRgbOJqz9p_xyFkq1Cq0zfzTtzQLFURUxNUlc0RTVVTThTUVRZRk0wUUhUSDRIRi4u&embed=true"
+        title="Questionario di validazione"></iframe>
     </div>
 
   </div>
 
   <footer>
-    <p>
-      © 2025 Bologna FC | Powered by <a href="https://openai.com" target="_blank" rel="noopener noreferrer">OpenAI ChatGPT</a>
-    </p>
+    © 2025 – Alma Mater Studiorum – Università di Bologna<br>
+    Corso di Laurea in Scienze e Tecniche dell’Attività Motoria e Sportiva<br>
+    Anno Accademico 2024/2025
   </footer>
-
-  <button id="scrollTopBtn" aria-label="Torna su" title="Torna su" onclick="scrollToTop()">⬆️</button>
-
-  <script>
-    // Mostra pulsante "scroll to top" dopo scroll di 300px
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        scrollTopBtn.classList.add('show');
-      } else {
-        scrollTopBtn.classList.remove('show');
-      }
-    });
-
-    function scrollToTop() {
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-  </script>
 
 </body>
 </html>
