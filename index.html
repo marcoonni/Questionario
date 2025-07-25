@@ -29,7 +29,6 @@
       align-items: center;
       min-height: 100vh;
       padding: 40px 20px;
-      transition: padding 0.3s ease;
     }
 
     /* ---------- Titolo e descrizione ---------- */
@@ -58,14 +57,13 @@
       border-radius: 16px;
       padding: 30px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
-      transition: padding 0.3s ease;
     }
 
     /* ---------- Video ---------- */
     .video-wrapper {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%; /* 16:9 */
+      padding-bottom: 56.25%;         /* 16:9 */
       margin-bottom: 40px;
       border-radius: 12px;
       overflow: hidden;
@@ -90,6 +88,11 @@
       transition: height 0.3s ease;
     }
 
+    /* ---------- Form più grande su mobile ---------- */
+    body.mobile .form-wrapper iframe {
+      height: 1100px; /* altezza aumentata per migliore leggibilità */
+    }
+
     /* ---------- Footer ---------- */
     footer {
       margin-top: 60px;
@@ -98,32 +101,11 @@
       opacity: .8;
     }
 
-    /* ---------- STILI PER DISPOSITIVO MOBILE ---------- */
-    body.mobile {
-      padding: 20px 10px;
-    }
-
-    body.mobile h1 {
-      font-size: 1.8rem;
-    }
-
-    body.mobile .container {
-      max-width: 100%;
-      padding: 25px;
-    }
-
-    body.mobile .form-wrapper iframe {
-      height: 800px; /* più alto su mobile */
-    }
-
-    /* ---------- Media Query di fallback ---------- */
+    /* ---------- Responsivo ---------- */
     @media (max-width: 600px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-      .form-wrapper iframe {
-        height: 800px; /* coerente con js/mobile class */
-      }
+      h1          { font-size: 1.8rem; }
+      p.description { font-size: 1rem; }
+      /* altezza iframe già gestita dalla classe mobile */
     }
   </style>
 </head>
@@ -165,7 +147,6 @@
   </footer>
 
   <script>
-    // Aggiunge classe "mobile" al body se il device è mobile
     if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       document.body.classList.add('mobile');
     }
